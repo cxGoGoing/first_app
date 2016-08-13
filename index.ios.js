@@ -11,14 +11,22 @@ import {
   Text,
   View
 } from 'react-native';
-
+// 导入json 数据
+var BadgeData = require('./BadgeData.json')
 class first_app extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+        {/*返回6个包*/}
+        {this.renderAllBadge()}
       </View>
     );
+  }
+
+  renderAllBadge(){
+  // 定义组装所有组件
+    var allBadge = [];
+
   }
 }
 
