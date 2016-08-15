@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 // 导入json 数据
 var BadgeData = require('./BadgeData.json')
@@ -26,6 +27,19 @@ class first_app extends Component {
   renderAllBadge(){
   // 定义组装所有组件
     var allBadge = [];
+    for(var i = 0;i<BadgeData.data.length;i++){
+      var badge = BadgeData.data[i];
+      // 直接装入数组
+      allBadge.push(
+          <View key={i} style={styles.outViewStyle}>
+            <Image source={{uri:badge.icon}} style={styles.imageStyle}/>
+            <Text style={styles.mainTitleStyle}>
+              {badge.title}
+            </Text>
+          </View>
+      );
+    }
+    return allBadge;
 
   }
 }
@@ -34,6 +48,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
+  },
+  outViewStyle:{
+
+  },
+  imageStyle:{
+
+  },
+
+  mainTitleStyle:{
+
   }
 });
 
