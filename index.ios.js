@@ -32,7 +32,7 @@ class first_app extends Component {
       // 直接装入数组
       allBadge.push(
           <View key={i} style={styles.outViewStyle}>
-            <Image source={{uri:badge.icon}} style={styles.imageStyle}/>
+            <Image source = {{uri:badge.icon}} style={styles.imageStyle}/>
             <Text style={styles.mainTitleStyle}>
               {badge.title}
             </Text>
@@ -40,7 +40,6 @@ class first_app extends Component {
       );
     }
     return allBadge;
-
   }
 }
 
@@ -50,12 +49,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   outViewStyle:{
+    width:80,
+    height:80
 
   },
   imageStyle:{
-
   },
-
   mainTitleStyle:{
 
   }
