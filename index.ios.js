@@ -13,12 +13,14 @@ import {
   Text,
   View,
   Image,
-  ListView
+  ListView,
+  TouchableOpacity,
+  AlertIOS
 } from 'react-native';
 // 导入json 数据
 var BadgeData = require('./BadgeData.json');
 var Dimensions = require('Dimensions');
-
+var {width} = Dimensions.get('window');
 
 var first_app = React.createClass({
     getInitialState(){
@@ -38,6 +40,10 @@ var first_app = React.createClass({
     },
     renderRow(rowData,sectionID,rowID,highlightRow){
       return (
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() =>(AlertIOS.alert(rowData.title))}
+        >
         <View style={styles.cellStyle}>
           <Image
             source={{uri:rowData.icon}}
@@ -48,7 +54,9 @@ var first_app = React.createClass({
           >
           {rowData.title}
           </Text>
-        </View>);
+        </View>
+          </TouchableOpacity>
+          );
     }
 
 });
