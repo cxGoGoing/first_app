@@ -60,6 +60,11 @@ const styles = StyleSheet.create({
     marginTop:25,
   },
   cellStyle:{
+    backgroundColor:'white',
+    borderBottomWidth:0.5,
+    borderBottomColor:'green',
+    flexDirection:'row',
+    padding:10,
 
   },
   leftImageStyle:{
