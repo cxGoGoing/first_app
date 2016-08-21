@@ -4,58 +4,69 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ListView
 } from 'react-native';
 // 导入json 数据
-var BadgeData = require('./BadgeData.json')
-class first_app extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        {/*返回6个包*/}
-        {this.renderAllBadge()}
-      </View>
-    );
-  }
+var BadgeData = require('./BadgeData.json');
+var Dimensions = require('Dimensions');
 
-  renderAllBadge(){
-  // 定义组装所有组件
-    var allBadge = [];
-    for(var i = 0;i<BadgeData.data.length;i++){
-      var badge = BadgeData.data[i];
-      // 直接装入数组
-      allBadge.push(
-          <View key={i} style={styles.outViewStyle}>
-            <Image source = {{uri:badge.icon}} style={styles.imageStyle}/>
-            <Text style={styles.mainTitleStyle}>
-              {badge.title}
-            </Text>
-          </View>
+
+var first_app = React.createClass({
+    getInitialState(){
+      var ds = new ListView.DataSource({rowHasChanged:(r1,r2) => r1!==r2})
+      return{
+        dataSource:ds.cloneWithRows(BadgeData)
+      }
+    },
+    render(){
+      return(
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        style={styles.container}
+      />
       );
+    },
+    renderRow(rowData,sectionID,rowID,highlightRow){
+      return (
+        <View style={styles.cellStyle}>
+          <Image
+            source={{uri:rowData.icon}}
+            style={styles.leftImageStyle}
+          />
+          <Text
+            style={styles.rightLabelStyle}
+          >
+          {rowData.title}
+          </Text>
+        </View>);
     }
-    return allBadge;
-  }
-}
+
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
+    marginTop:25,
   },
-  outViewStyle:{
-    width:80,
-    height:80
+  cellStyle:{
 
   },
-  imageStyle:{
+  leftImageStyle:{
+    width:60,
+    height:60
   },
-  mainTitleStyle:{
+  rightLabelStyle:{
 
   }
 });
